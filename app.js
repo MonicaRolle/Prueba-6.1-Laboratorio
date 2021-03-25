@@ -85,32 +85,22 @@ var createSpace = () => {
     var br = document.createElement("br");
     container.appendChild(br);
 }
-var createSubtotal = () => {
-    var span = document.createElement("span");
-    span.innerText = "Subtotal: ";
-    var subtotal = document.createElement("span");
 
-    subtotal.innerText = subTotal(products) + " €";
-    calculo.appendChild(span);
-    calculo.appendChild(subtotal);
-}
-var subTotal = productList => {
+function subTotal() {
     var total = 0;
-    for (var product of productList) {
+    for (var product of products) {
         total += product.price * product.units;
     }
     return total;
 }
-var CreateIva = (product) => {
-    var span = document.createElement("span");
-    span.innerText = "IVA : ";
 
-
+function iva() {
+    var iva = 0;
+    for (var product of products) {
+        iva += (product.price * product.units) * product.tax / 100;
+    }
+    return iva;
 }
-var iva = () => {
-    precio total producto * IVA / 100.
-}
-
 
 var showProducts = productList => {
     for (var product of productList) {
@@ -122,15 +112,12 @@ var showProducts = productList => {
     }
 }
 showProducts(products);
-document.getElementById("calcular").addEventListener("click", createSubtotal)
+document.getElementById("calcular").addEventListener("click", () => showPrices(iva(), subTotal()))
 
+function showPrices(iva, subTotal) {
+    var total = iva + subTotal;
+    document.getElementById("subtotal-text").innerText = subTotal + "€";
+    document.getElementById("iva-text").innerText = iva + " €";
+    document.getElementById("total-text").innerText = total + "€";
 
-
-
-// var input = document.createElement("input");
-// input.setAttribute("class", "product-unit");
-// input.setAttribute("type", "number");
-// input.setAttribute("value", 5);
-// input.addEventListener("change", event => console.log(event.target.value));
-// var main = document.getElementById("product-list-container");
-// main.appendChild(input);
+}
