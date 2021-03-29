@@ -62,28 +62,18 @@ const products = [{
 ];
 
 //1.Create HTML
+
 //Create Elements
 var container = document.getElementById("product-list-container");
 var calculo = document.getElementById("calculo");
-// var ol = document.createElement("ol");
-// ol.setAttribute("id", "number-list");
-// ol.style.type = "1";
-// var list = document.getElementById("list");
-// list.appendChild(ol);
 
 
 //Recorrer la lista
 
-// function createLi() {
-//     var li = document.createElement("li");
-//     li.setAttribute("class", "product-container");
-//     var ol = document.getElementById("number-list");
-//     ol.appendChild(li);
-//     return li
-// }
 
 var createDescription = product => {
-    var description = document.createElement("label");
+    var description = document.createElement("li");
+
     description.innerText = product.description + " - " + product.price + "€/ud.";
     container.appendChild(description)
 }
@@ -95,10 +85,7 @@ var createInput = product => {
     input.addEventListener("change", event => (product.units) = event.target.valueAsNumber);
     container.appendChild(input);
 }
-var createSpace = () => {
-    var br = document.createElement("br");
-    container.appendChild(br);
-}
+
 
 function subTotal() {
     var total = 0;
@@ -116,12 +103,10 @@ function iva() {
     return iva;
 }
 
-var showProducts = productList => {
-    for (var product of productList) {
-
+var showProducts = () => {
+    for (var product of products) {
         createDescription(product);
         createInput(product);
-        createSpace();
 
     }
 }
