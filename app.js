@@ -65,10 +65,22 @@ const products = [{
 //Create Elements
 var container = document.getElementById("product-list-container");
 var calculo = document.getElementById("calculo");
-
+// var ol = document.createElement("ol");
+// ol.setAttribute("id", "number-list");
+// ol.style.type = "1";
+// var list = document.getElementById("list");
+// list.appendChild(ol);
 
 
 //Recorrer la lista
+
+// function createLi() {
+//     var li = document.createElement("li");
+//     li.setAttribute("class", "product-container");
+//     var ol = document.getElementById("number-list");
+//     ol.appendChild(li);
+//     return li
+// }
 
 var createDescription = product => {
     var description = document.createElement("label");
@@ -78,6 +90,8 @@ var createDescription = product => {
 var createInput = product => {
     var input = document.createElement("input");
     input.setAttribute("type", "number");
+    input.setAttribute("max", product.stock)
+    input.setAttribute("min", 0)
     input.addEventListener("change", event => (product.units) = event.target.valueAsNumber);
     container.appendChild(input);
 }
